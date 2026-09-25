@@ -1,129 +1,118 @@
 # deep-reading
 
-> 一个用于**全文精读**的 Agent Skill：把任何领域的书与文章，读成一份**可独立阅读**的精读文档，并沉淀进知识库。
->
-> 触发方式：对 Agent 说「精读这本书」「解读这篇文章」「这段看不懂」，或直接把文件丢给它。
+一个给 AI Agent 用的精读技能。把一本书或一篇文章丢给它，它按一套固定规矩读一遍，产出一份能独立阅读的精读文档，并写进你的知识库。
 
----
+对 Agent 说「精读这本书」「解读这篇文章」「这段看不懂」，或者直接把文件递过去，就能触发。
 
-## 这是什么
+开源项目，MIT 许可，拿去用、改、再分发都行。
 
-`deep-reading` 是一份给 AI Agent 的工作手册（`SKILL.md` + `references/`）。它规定了四件事：
+## 它做什么
 
-1. **怎么读**——原文逐段在上、解读紧随其下的「原文锚点」结构；**解读篇幅 ≥ 原文的 5–10 倍**，禁止骨架化、禁止只摘金句。
-2. **按什么格式读**——通用型 / 历史风格 / 电工实操 / 哲学 / 小说叙事 / 批判性文本，六种格式各有最小合格单元。
-3. **拿什么刀读**——三套跨域理论作手术刀：**症候阅读**（阿尔都塞）、**辩证法**、**拉康精神分析**，以及面向政治史/当代史的**力量分析**方向模块。要求融入解读正文，不另立小节。
-4. **读到哪去**——产物落进知识库：精读页、概念页、索引与日志，三者联动。
+规矩写在 `SKILL.md` 和 `references/` 里，主要四条。
 
-它还带一套**质量边界**：6 条边界（不啰嗦、不列举、不分块标签、不引号泛滥、不堆元叙述、不学术名词堆砌）+ 6 条自检清单（事实 / 范围 / 陷阱 / 术语 / 排查顺序 / 多视角）。
+**怎么读。** 原文一段段放在上面，解读紧跟着写在下面，解读的长度至少是原文的五到十倍。不给骨架，也不摘几句金句了事，每个锚点都得配一大段分析。
 
----
+**按什么格式读。** 通用论述、史书、电工手册、哲学原著、小说、带立场的评论，各有一套最小合格单元。格式选错，整篇都会走形。
+
+**拿什么刀读。** 症候阅读（阿尔都塞）、辩证法、拉康的精神分析各一把；另有一个力量分析模块，专门应付政治史和当代史，把历史读成几股力量在时间里的相互推挤，而不是某条路线的展开。这些视角要求融进解读正文，不单独开小节。
+
+**读到哪去。** 精读页、概念页、索引、日志，四样都落进知识库（推荐 Obsidian）。
+
+另有一套质量边界：6 条边界（不啰嗦、不列举、不分块标签、不引号泛滥、不堆元叙述、不堆学术名词）和 6 条自检（事实、范围、陷阱、术语、排查顺序、多视角）。这些是被反复挑刺之后攒下来的，不是装饰。
 
 ## 目录结构
 
 ```
 deep-reading/
-├── SKILL.md                      入口：决策矩阵（路由）+ 强规则摘要 + 主流程
-├── CONTEXT.md                    领域术语与规则摘要（Schema 层）
+├── SKILL.md                      入口：决策矩阵 + 强规则摘要 + 主流程
+├── CONTEXT.md                    领域术语与规则摘要
 ├── agents/Agent.md               执行体说明
 ├── references/
-│   ├── authoring/                核心规则（22 份）
+│   ├── authoring/                核心规则，22 份
 │   │   ├── agent-role.md                    角色、边界、自检清单、维护纪律
-│   │   ├── reading-format-system.md         六种格式的最小合格单元与选型
-│   │   ├── historical-source-close-reading.md  历史文本协议（卷次/锚点/书写者视角）
-│   │   ├── symptomatic-reading.md           症候阅读（文本没说什么）
-│   │   ├── psychoanalytic-rereading.md      拉康精神分析重读（主体位置）
-│   │   ├── integrated-philosophy-framework.md  三套理论的整合用法
-│   │   ├── force-analysis.md                力量分析（把历史读成力量场，不读成路线史）
-│   │   ├── writing-as-book.md               写书式精读
-│   │   ├── exegesis-protocol.md / fulltext-exegesis-protocol.md / fulltext-reading-workflow.md
-│   │   ├── guwen-template.md / structured-template.md / concept-page-template.md
-│   │   ├── obsidian-output-format.md / ocr-vision-guide.md
-│   │   ├── direction-module-guide.md        新增学科方向模块的注册方式
-│   │   └── skill-maintenance-workflow.md    skill 自身的检测与迭代
+│   │   ├── reading-format-system.md         六种格式的合格单元与选型
+│   │   ├── historical-source-close-reading.md  历史文本协议
+│   │   ├── symptomatic-reading.md           症候阅读
+│   │   ├── psychoanalytic-rereading.md      拉康式重读
+│   │   ├── integrated-philosophy-framework.md  三套理论的配合用法
+│   │   ├── force-analysis.md                力量分析
+│   │   ├── writing-as-book.md               怎样写得让人读得下去
+│   │   └── （另有 exegesis / 模板 / OCR / Obsidian 格式 / 方向模块 / 维护流程等）
 │   └── templates/
-│       └── skill-evaluation-template.md     结构评估报告模板
+│       └── skill-evaluation-template.md
 ├── docs/
-│   ├── adr/                      7 份架构决策记录（0001–0007）
+│   ├── adr/                      7 份架构决策记录
 │   ├── grilling-v2.5.0.md        自我审问记录
 │   └── reader-audit-log.md       读者视角巡检日志
-├── skill-evaluation.md           结构评估
-└── validate_v2.9.24.txt          某轮校验输出留档
+├── README.md
+├── LICENSE
+└── skill-evaluation.md
 ```
-
----
 
 ## 安装
 
-把整个 `deep-reading/` 目录放进 Agent 的 skills 目录，重启或重新加载后即可被触发：
+把整个 `deep-reading/` 塞进 Agent 的 skills 目录，重载后生效。
 
-| 平台 | 放置位置 |
+| 平台 | 放在哪 |
 |---|---|
 | HanaAgent | `<工作区>/.agents/skills/deep-reading/` |
 | Claude Code | `~/.claude/skills/deep-reading/` |
 
-> 放入后，Agent 在你说「精读 / 解读 / 读这本书」时才会加载它——平时只加载 `name` 与 `description` 两行。
+平时它只占两行上下文（名字和描述），你说「精读」的时候才整个加载。
 
----
+## 它还需要一个知识库
 
-## 它还需要一个知识库（重要）
+技能本身只是执行器，产物得有地方落。只放技能、不建库，读完就散。
 
-**这个 skill 只是执行器，产物要落在知识库里。** 只放 skill、不建库，等于读完就散。最小结构：
+最小结构长这样：
 
 ```
 <你的知识库>/
-├── SCHEMA.md            规则层：目录结构、命名约定、Ingest / Query / Lint 流程
-├── raw/                 原文层（只读，存放原始 PDF/EPUB/网页剪藏）
-└── wiki/                知识层（由 Agent 维护）
-    ├── index.md         内容索引：每页一行（链接 + 一句话摘要 + 标签）
-    ├── log.md           操作日志：## [日期] ingest|query|lint | 对象
-    ├── readings/        精读专库（按领域分子目录：历史/哲学/古文/…）
-    └── concepts/        概念页（跨域扁平存放，用 domain 标签区分）
+├── SCHEMA.md            规则层：目录结构、命名、Ingest / Query / Lint
+├── raw/                 原文层，只读
+└── wiki/
+    ├── index.md         索引：每页一行
+    ├── log.md           操作日志
+    ├── readings/        精读页，按领域分目录
+    └── concepts/        概念页
 ```
 
-搭配 Obsidian 使用效果最好：精读页直接可读，`[[wikilink]]` 自动连成网。
-
----
+搭 Obsidian 用最顺手，精读页能直接读，`[[wikilink]]` 自动连成网。
 
 ## 怎么用
 
-| 你说 | 它做什么 |
+| 你说 | 它做 |
 |---|---|
-| 「用 deep-reading 精读这本书」+ 文件 | 全篇精读：选格式 → 原文锚点 + 大段解读 → 落库 |
-| 「这段看不懂 / 解释这段」 | 难点细读（文本驱动） |
-| 「我读到第三章没读懂」 | 答疑（Query 模式：先读索引，再定位页面） |
-| 「Ingest / 体检知识库」 | 入库、索引更新、矛盾与缺口盘点 |
-| 「继续往下写」 | 基于已有精读续写下一卷/下一章 |
+| 「用 deep-reading 精读这本书」加一个文件 | 全篇精读，选格式、逐段解读、落库 |
+| 「这段看不懂」「解释这段」 | 难点细读 |
+| 「我读到第三章没读懂」 | 答疑（先读索引，再定位页面） |
+| 「Ingest 入库」「体检知识库」 | 入库、更新索引、盘点矛盾与缺口 |
+| 「继续往下写」 | 接着已有的精读写下一卷 |
 
----
+## 维护
 
-## 维护与校验
-
-- 版本记录：见 `SKILL.md` 的版本历史与 `docs/adr/`。
-- 改动后跑一次结构校验（需要 `kz-skill-creator` 在旁边）：
+改完之后跑一次结构校验（需要 kz-skill-creator 在旁边）：
 
 ```bash
 python <kz-skill-creator>/scripts/skill_cli.py validate deep-reading
 ```
 
-- 维护流程本身写在 `references/authoring/skill-maintenance-workflow.md`：grilling 自检 → 规范合规检查 → 路由评估 → 落地改进。
-
----
-
-## 版本
-
-首次发布：标签 **`version-one`**
+维护流程本身写在 `references/authoring/skill-maintenance-workflow.md`：自审、规范检查、路由评估、落地改进。
 
 ## 许可
 
-本项目采用 **MIT License**——可自由使用、修改、分发，包括商业用途，只需保留版权声明与许可声明。
+MIT。随便用，商用也行，唯一的要求是保留版权声明这一行：
 
 ```
 Copyright (c) 2026 孤松 (GitHub: gusong1729)
 ```
 
-完整条文见仓库根目录的 [`LICENSE`](LICENSE)。
+完整条文见 [LICENSE](LICENSE)。
 
-### 关于本文档包里的第三方内容
+包里引用的书刊、网站和工具（anysearch、kz-skill-creator、Obsidian 等）版权归各自作者，这里只是引用和说明，不影响上面的 MIT。
 
-本包为方法与实践的整理，文中引用的书刊、网站与工具（如 anysearch、kz-skill-creator、Obsidian）归各自权利人所有，仅作引用与方法来源说明；这些引用不改变上述 MIT 许可。
+## 版本
+
+- `version-one`：首次发布，33 个文件
+- 之后补了 README 与 LICENSE（MIT），仓库转为公开
+- 仓库地址：https://github.com/gusong1729/deep-reading
