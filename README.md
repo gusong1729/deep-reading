@@ -97,6 +97,10 @@ deep-reading/
 python <kz-skill-creator>/scripts/skill_cli.py validate deep-reading
 ```
 
+`kz-skill-creator` 是 K叔开源的 Skill 创建器，Gitee 地址：<https://gitee.com/kingzeus/skills> 。Skill 的创建、重构、评测那一套方法论（渐进式披露、语义化标记、版本与校验规则）都是它定的，本项目的写法也跟着它来。
+
+换一套流程重写自己的 skill 时，把它放在工作区旁边就能用。
+
 维护流程本身写在 `references/authoring/skill-maintenance-workflow.md`：自审、规范检查、路由评估、落地改进。
 
 ## 许可
