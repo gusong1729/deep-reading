@@ -116,4 +116,14 @@ python <kz-skill-creator>/scripts/skill_cli.py validate deep-reading
 
 ## 许可
 
-未指定。如需开源，请补充 `LICENSE`。
+本项目采用 **MIT License**——可自由使用、修改、分发，包括商业用途，只需保留版权声明与许可声明。
+
+```
+Copyright (c) 2026 孤松 (GitHub: gusong1729)
+```
+
+完整条文见仓库根目录的 [`LICENSE`](LICENSE)。
+
+### 关于本文档包里的第三方内容
+
+本包为方法与实践的整理，文中引用的书刊、网站与工具（如 anysearch、kz-skill-creator、Obsidian）归各自权利人所有，仅作引用与方法来源说明；这些引用不改变上述 MIT 许可。
